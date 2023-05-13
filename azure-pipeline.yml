@@ -1,5 +1,5 @@
-# Repo: MySpace/TemplateRepo
-# File: azure-pipeline.yml
+# Repo: MySpace/UserRepo
+# File: azure-pipeline2.yml
 
 name: cicd_ci
 
@@ -11,13 +11,4 @@ trigger:
 stages:
 - stage: CI_Checks
   jobs:
-  - job:
-    displayName: yamllint_checks
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - script: |
-        python -m pip install --upgrade pip
-        pip install yamllint
-        yamllint -d "{extends: relaxed, rules: {line-length: {max: 200}, new-line-at-end-of-file: disable, new-lines: disable}}" .
-      displayName: 'YAML Lint Checks'
+  - template: ci_template.yml
